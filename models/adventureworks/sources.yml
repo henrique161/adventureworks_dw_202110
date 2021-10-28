@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: erpadventureworks20211028
+    tables:
+      - name: sales_salesorderheader
+        descripton: Essa é a tabela de pedidos
+        columns:
+          - name: salesorderid
+            description: Id do Pedido
+            tests:
+              - unique
+              - not_null
