@@ -11,3 +11,19 @@ sources:
             tests:
               - unique
               - not_null
+      - name: sales_salesorderdetail
+        descripton: Essa é a tabela de detalhes de pedidos
+        columns:
+          - name: salesorderid
+            description: Id do Pedido
+            tests:
+              - unique
+              - not_null
+      - name: sales_creditcard
+        descripton: Essa é a tabela de cartão de crédito
+        columns:
+          - name: creditcardid
+            description: Id do Cartão de Crédito
+            tests:
+              - unique
+              - not_null
