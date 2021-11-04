@@ -78,8 +78,8 @@ sources:
       - name: person_emailaddress
         descripton: Essa é a tabela do E-mail das Pessoas
         columns:
-          - name: businessentityid
-            description: Id da Entidade de Negócio
+          - name: emailaddressid
+            description: Id do E-mail da Pessoa
             tests:
               - unique
               - not_null
