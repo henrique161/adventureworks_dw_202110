@@ -4,7 +4,8 @@ with
     credit_card as (
         select
         creditcard_sk 
-        , creditcardid	
+        , creditcardid
+        , cardtype	
         from {{ref('dim_credit_card')}}
     )
 
@@ -33,6 +34,9 @@ with
         select
         person_sk 
         , businessentityid
+        , firstname	
+        , middlename	
+        , lastname	
         from {{ref('dim_person')}}
 )
 
@@ -40,13 +44,15 @@ with
         select
         product_sk
         , productid
+        , name
         from {{ref('dim_product')}}
 )
 
 , sales_reason as (
         select
         salesreason_sk
-        , salesreasonid	
+        , salesreasonid
+        , name	
         from {{ref('dim_sale_reason')}}
 )
 
@@ -56,7 +62,8 @@ with
         , salesorderid
         , orderqty		
         , unitprice		
-        , unitpricediscount		
+        , unitpricediscount
+        , productid		
         from {{ref('dim_sales_order_detail')}}
 )
 
@@ -64,6 +71,7 @@ with
         select
         territory_sk
         , territoryid
+        , name
         from {{ref('dim_sales_territory')}}
 )
 
@@ -72,11 +80,14 @@ with
         sales_salesorderheader.salesorderid
         , sales_order_detail.salesorderdetail_sk as salesorderdetail_fk
         , credit_card.creditcard_sk as creditcard_fk
+        , credit_card.cardtype as card_type
         , customer.customer_sk as customer_fk
         , sales_territory.territory_sk as territory_fk
+        , sales_territory.name as country
         , sales_salesorderheader.orderdate
         , sales_salesorderheader.duedate	
         , sales_salesorderheader.shipdate
+        , sales_salesorderheader.status
         , sales_salesorderheader.freight
         , sales_order_detail.unitprice
         , sales_order_detail.unitpricediscount
@@ -89,5 +100,6 @@ with
         left join sales_territory sales_territory on sales_salesorderheader.territoryid = sales_territory.territoryid
         left join sales_order_detail sales_order_detail on sales_salesorderheader.salesorderid = sales_order_detail.salesorderid
 )
+
 
 select * from sales_orders_with_sk
