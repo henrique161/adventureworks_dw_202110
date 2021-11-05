@@ -10,7 +10,8 @@ with
 
 
             row_number() over (order by productid) as product_sk -- auto incremental surrogate key
-            , productid		
+            , productid	
+            , salesorderid 
             , name		
             , productnumber		
             , makeflag

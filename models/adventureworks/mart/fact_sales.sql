@@ -36,6 +36,7 @@ with
 , product as (
         select
         product_sk
+        , salesorderid
         , productid
         , name
         from {{ref('dim_product')}}
@@ -74,6 +75,9 @@ with
         select
         sales_salesorderheader.salesorderid
         , sales_order_detail.salesorderdetail_sk as salesorderdetail_fk
+        , product.product_sk as product_fk
+        , product.productid
+        , product.name as product_name 
         , credit_card.creditcard_sk as creditcard_fk
         , credit_card.cardtype as card_type
         , customer.customer_sk as customer_fk
@@ -97,6 +101,7 @@ with
         left join sales_territory sales_territory on sales_salesorderheader.territoryid = sales_territory.territoryid
         left join sales_order_detail sales_order_detail on sales_salesorderheader.salesorderid = sales_order_detail.salesorderid
         left join sales_reason sales_reason on sales_salesorderheader.salesorderid = sales_reason.salesorderid
+        left join product product on sales_salesorderheader.salesorderid = product.salesorderid
 )
 
 select * from sales_orders_with_sk
