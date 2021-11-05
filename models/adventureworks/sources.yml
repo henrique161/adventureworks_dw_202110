@@ -75,19 +75,11 @@ sources:
             tests:
               - unique
               - not_null
-      - name: person_emailaddress
-        descripton: Essa é a tabela do E-mail das Pessoas
-        columns:
-          - name: emailaddressid
-            description: Id do E-mail da Pessoa
-            tests:
-              - unique
-              - not_null
       - name: sales_salesorderheadersalesreason
         descripton: Essa é a tabela concatenada de Razão de Vendas e Pedidos
         columns:
           - name: salesreasonid
-            description: Id da razão de venda
+            description: i
             tests:
               - unique
               - not_null

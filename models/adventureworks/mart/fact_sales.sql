@@ -16,13 +16,6 @@ with
         from {{ref('dim_customer')}}
     )
 
-, email_address as (
-        select
-        emailaddress_sk 
-        , emailaddressid
-        from {{ref('dim_email_adress')}}
-    )
-
 , person_address as (
         select
         address_sk
