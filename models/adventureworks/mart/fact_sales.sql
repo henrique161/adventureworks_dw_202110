@@ -50,6 +50,15 @@ with
         from {{ref('dim_sale_reason')}}
 )
 
+, sales_order_detail as (
+        select
+        salesorderdetail_sk
+        , orderqty		
+        , unitprice		
+        , unitpricediscount		
+        from {{ref('dim_sales_order_detail')}}
+)
+
 , sales_territory as (
         select
         territory_sk
