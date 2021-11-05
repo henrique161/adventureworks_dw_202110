@@ -45,7 +45,9 @@ with
         select
         salesreason_sk
         , salesreasonid
-        , name	
+        , salesorderid
+        , name
+        , reasontype	
         from {{ref('dim_sale_reason')}}
 )
 
@@ -77,6 +79,8 @@ with
         , customer.customer_sk as customer_fk
         , sales_territory.territory_sk as territory_fk
         , sales_territory.name as country
+        , sales_reason.salesreason_sk as salesreason_fk
+        , sales_reason.name as salesreason_name
         , sales_salesorderheader.orderdate
         , sales_salesorderheader.duedate	
         , sales_salesorderheader.shipdate
@@ -92,7 +96,7 @@ with
         left join customer customer on sales_salesorderheader.customerid = customer.customerid
         left join sales_territory sales_territory on sales_salesorderheader.territoryid = sales_territory.territoryid
         left join sales_order_detail sales_order_detail on sales_salesorderheader.salesorderid = sales_order_detail.salesorderid
+        left join sales_reason sales_reason on sales_salesorderheader.salesorderid = sales_reason.salesorderid
 )
-
 
 select * from sales_orders_with_sk
