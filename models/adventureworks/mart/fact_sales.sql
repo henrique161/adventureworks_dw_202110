@@ -20,6 +20,8 @@ with
         select
         address_sk
         , addressid
+        , city	
+        , stateprovinceid
         from {{ref('dim_person_adress')}}
 )
 
@@ -83,6 +85,9 @@ with
         , customer.customer_sk as customer_fk
         , sales_territory.territory_sk as territory_fk
         , sales_territory.name as country
+        , person_address.address_sk as address_sk
+        , person_address.stateprovinceid
+        , person_address.city
         , sales_reason.salesreason_sk as salesreason_fk
         , sales_reason.name as salesreason_name
         , sales_salesorderheader.orderdate
@@ -102,6 +107,7 @@ with
         left join sales_order_detail sales_order_detail on sales_salesorderheader.salesorderid = sales_order_detail.salesorderid
         left join sales_reason sales_reason on sales_salesorderheader.salesorderid = sales_reason.salesorderid
         left join product product on sales_salesorderheader.salesorderid = product.salesorderid
+        left join person_address person_address on sales_salesorderheader.billtoaddressid = person_address.addressid
 )
 
 select * from sales_orders_with_sk
