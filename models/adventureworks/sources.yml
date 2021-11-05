@@ -83,3 +83,11 @@ sources:
             tests:
               - unique
               - not_null
+      - name: sales_salesorderheadersalesreason
+        descripton: Essa é a tabela concatenada de Razão de Vendas e Pedidos
+        columns:
+          - name: salesreasonid
+            description: Id da razão de venda
+            tests:
+              - unique
+              - not_null

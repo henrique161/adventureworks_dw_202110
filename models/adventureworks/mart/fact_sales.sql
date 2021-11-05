@@ -34,6 +34,9 @@ with
         select
         person_sk 
         , businessentityid
+        , firstname	
+        , middlename	
+        , lastname	
         from {{ref('dim_person')}}
 )
 
@@ -41,13 +44,15 @@ with
         select
         product_sk
         , productid
+        , name
         from {{ref('dim_product')}}
 )
 
 , sales_reason as (
         select
         salesreason_sk
-        , salesreasonid	
+        , salesreasonid
+        , name	
         from {{ref('dim_sale_reason')}}
 )
 
@@ -57,7 +62,8 @@ with
         , salesorderid
         , orderqty		
         , unitprice		
-        , unitpricediscount		
+        , unitpricediscount
+        , productid		
         from {{ref('dim_sales_order_detail')}}
 )
 
@@ -81,6 +87,7 @@ with
         , sales_salesorderheader.orderdate
         , sales_salesorderheader.duedate	
         , sales_salesorderheader.shipdate
+        , sales_salesorderheader.status
         , sales_salesorderheader.freight
         , sales_order_detail.unitprice
         , sales_order_detail.unitpricediscount
@@ -93,5 +100,6 @@ with
         left join sales_territory sales_territory on sales_salesorderheader.territoryid = sales_territory.territoryid
         left join sales_order_detail sales_order_detail on sales_salesorderheader.salesorderid = sales_order_detail.salesorderid
 )
+
 
 select * from sales_orders_with_sk
