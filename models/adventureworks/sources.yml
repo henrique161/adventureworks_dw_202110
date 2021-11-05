@@ -14,7 +14,7 @@ sources:
       - name: sales_salesorderdetail
         descripton: Essa é a tabela de detalhes de pedidos
         columns:
-          - name: salesorderid
+          - name: salesorderdetailid
             description: Id do Pedido
             tests:
               - unique
