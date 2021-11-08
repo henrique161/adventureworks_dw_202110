@@ -25,33 +25,10 @@ models:
             tests:
                 - unique
                 - not_null
-    - name: dim_email_adress
-      description: "Dimensão dos E-mail's"
-      columns:
-          - name: emailaddressid
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
-      description: "Dimensão dos Pedidos"
-      columns:
-          - name: salesorderid
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
     - name: dim_person_adress
       description: "Dimensão do Endereço das Pessoas"
       columns:
           - name: addressid
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
-    - name: dim_person
-      description: "Dimensão das Pessoas"
-      columns:
-          - name: businessentityid
             description: "The primary key for this table"
             tests:
                 - unique
@@ -68,6 +45,14 @@ models:
       description: "Dimensão da Razão de Venda"
       columns:
           - name: salesreasonid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+    - name: dim_order_detail
+      description: "Dimensão de Detalhe do Pedido"
+      columns:
+          - name: salesorderdetailid
             description: "The primary key for this table"
             tests:
                 - unique
