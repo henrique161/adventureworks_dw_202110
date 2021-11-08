@@ -13,6 +13,9 @@ with
         select
         customer_sk
         , customerid
+        , firstname	
+        , middlename	
+        , lastname
         from {{ref('dim_customer')}}
     )
 
@@ -80,9 +83,12 @@ with
         , product.product_sk as product_fk
         , product.productid
         , product.name as product_name 
+        , customer.customer_sk as customer_fk
+        , customer.firstname as customer_firstname
+        , customer.middlename as custumer_middlename
+        , customer.lastname as customer_lastname
         , credit_card.creditcard_sk as creditcard_fk
         , credit_card.cardtype as card_type
-        , customer.customer_sk as customer_fk
         , sales_territory.territory_sk as territory_fk
         , sales_territory.name as country
         , person_address.address_sk as address_sk

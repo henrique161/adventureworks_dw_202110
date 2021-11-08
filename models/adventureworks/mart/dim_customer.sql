@@ -9,7 +9,10 @@ with
         select
 
             row_number() over (order by customerid) as customer_sk -- auto incremental surrogate key
-            , customerid	
+            , customerid
+            , firstname	
+            , middlename	
+            , lastname		
             , personid	
             , storeid	
             , territoryid			
