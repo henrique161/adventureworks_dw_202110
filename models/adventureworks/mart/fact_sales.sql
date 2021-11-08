@@ -28,16 +28,6 @@ with
         from {{ref('dim_person_adress')}}
 )
 
-, person as (
-        select
-        person_sk 
-        , businessentityid
-        , firstname	
-        , middlename	
-        , lastname	
-        from {{ref('dim_person')}}
-)
-
 , product as (
         select
         product_sk
